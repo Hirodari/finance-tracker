@@ -12,12 +12,9 @@
   <body>
     <%= render 'layouts/menu'%>
     <div class="ui container">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+      <%= render 'layouts/alert'%>
       <%= yield %>
     </div>
     <%= render 'layouts/footer'%>
-
-
   </body>
 </html>

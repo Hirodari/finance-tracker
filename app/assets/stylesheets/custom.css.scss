@@ -1,4 +1,5 @@
 @import "semantic-ui";
+@import 'bootstrap/dist/css/bootstrap';
 
 .footer {
   position: fixed;
@@ -19,4 +20,13 @@
 body {
   background-color: #060b12;
   color: white;
+}
+
+.form-grid {
+    padding-left: 250px;
+
+}
+
+.form-attr {
+   background-color: #CACBCD !important;
 }
