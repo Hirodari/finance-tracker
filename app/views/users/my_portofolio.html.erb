@@ -1,0 +1,23 @@
+<h1>My Portfolio</h1>
+
+
+<div class="ui form">
+  <div class="inline field">
+    <h3 id="label-id">Search Stocks</h3>
+    <%= form_tag search_stock_path, method: :get do%>
+    <div class="ui equal width grid">
+      <div class="column">
+          <%= text_field_tag :stock, params[:stock], placeholder:"Stock sticker name",
+              autofocus: true, class:" two wide column" %>
+      </div>
+      <div class="column">
+        <%= button_tag type: :submit, class: "ui positive submit button" do %>
+          <%= fa_icon "search " %>
+        <% end %>
+
+        <!-- <button class="ui positive submit button">Submit</button> -->
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
