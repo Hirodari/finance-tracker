@@ -1,0 +1,29 @@
+<div class="alert-format">
+  <%= render 'layouts/alert' %>
+</div>
+
+<% if @stock %>
+<div class="ui cards">
+  <div class="card">
+    <div class="content">
+      <!-- <img class="right floated mini ui image" src='<%= @stock[:"logo"]%>'> -->
+        <!-- <%= @stock[:"logo"].url %> -->
+        <div class="header">
+          <%= @stock[:"name"] %>
+        </div>
+        <div class="meta">
+          <%= @stock[:"ticker"] %>
+        </div>
+        <div class="description">
+        <strong><%= @stock[:"last_price"] %></strong>
+        </div>
+
+    </div>
+    <div class="extra content">
+      <div class="ui two buttons">
+        <div class="ui basic green button">Approve</div>
+        <div class="ui basic red button">Decline</div>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -4,11 +4,11 @@
 <div class="ui form">
   <div class="inline field">
     <h3 id="label-id">Search Stocks</h3>
-    <%= form_tag search_stock_path, method: :get do%>
+    <%= form_tag search_stock_path, remote: true, method: :get do%>
     <div class="ui equal width grid">
       <div class="column">
           <%= text_field_tag :stock, params[:stock], placeholder:"Stock sticker name",
-              autofocus: true, class:" two wide column" %>
+              autofocus: true, class:" two wide column", id:"bar" %>
       </div>
       <div class="column">
         <%= button_tag type: :submit, class: "ui positive submit button" do %>
@@ -19,5 +19,7 @@
       </div>
     </div>
     <% end %>
-  </div>
+   </div>
+</div>
+<div id="results">
 </div>
