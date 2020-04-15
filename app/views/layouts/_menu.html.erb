@@ -1,19 +1,30 @@
 <div class="ui inverted mini menu" id="menu-color">
-  <a class="item">
-    <%= link_to 'Home', root_path, class:"item"%>
-  </a>
   <a>
-    <%= link_to 'Message', my_portfolio_path, class:"item"%>
+    <%= link_to 'Finance Tracker', root_path, class:"item
+    #{ 'active' if request.path == root_path }" %>
   </a>
-  <div class="right menu">
-    <div class="ui dropdown item">
-      Language <i class="dropdown icon"></i>
-      <div class="menu">
-        <a class="item">English</a>
-        <a class="item">Russian</a>
-        <a class="item">Spanish</a>
+  <%if current_user %>
+  <a>
+    <%= link_to 'Search Trackers', my_portfolio_path, class:"item
+    #{ 'active' if request.path == my_portfolio_path }"%>
+  </a>
+
+    <div class="right menu">
+      <div class="ui dropdown item">
+        <i class="user icon" id="user-icon"></i> <%= current_user.full_name %>
+        <i class="dropdown icon"></i>
+        <div class="menu">
+          <%= link_to edit_user_registration_path, class:"item" do %>
+            <%= fa_icon 'edit'%> Edit Profile
+          <% end %>
+          <a class="item">English</a>
+          <a class="item">Russian</a>
+          <a class="item">Spanish</a>
+        </div>
       </div>
-    </div>
+    <% else %>
+      <div class="right menu">
+    <% end %>
     <div class="item">
       <% if user_signed_in? %>
         <div class="ui buttons">

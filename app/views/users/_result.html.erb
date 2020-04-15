@@ -3,26 +3,38 @@
 </div>
 
 <% if @stock %>
-<div class="ui cards">
-  <div class="card">
-    <div class="content">
-      <!-- <img class="right floated mini ui image" src='<%= @stock[:"logo"]%>'> -->
-        <!-- <%= @stock[:"logo"].url %> -->
+<div class="ui cards" >
+  <div class="card" id="card-color">
+    <div class="content" >
         <div class="header">
-          <%= @stock[:"name"] %>
+          <%= @stock.name %>
         </div>
         <div class="meta">
-          <%= @stock[:"ticker"] %>
+          <%= @stock.ticker %>
         </div>
         <div class="description">
-        <strong><%= @stock[:"last_price"] %></strong>
+        <strong><%= @stock.last_price %></strong>
         </div>
 
     </div>
     <div class="extra content">
       <div class="ui two buttons">
-        <div class="ui basic green button">Approve</div>
-        <div class="ui basic red button">Decline</div>
+        <% if current_user.can_track_stock?(@stock.ticker) %>
+          <%= link_to "Add Portfolio", user_stocks_path(user: current_user, ticker: @stock.ticker),
+          class:"ui teal button", method: :post %>
+        <% else %>
+          <div class="ui green labels">
+            <a class="ui label">
+              Already tracking
+              <% if !current_user.under_stock_limit?%>
+                10 stocks
+              <% end %>
+              <% if current_user.stock_already_tracked?(@stock.ticker)%>
+                this stocks
+              <% end %>
+            </a>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

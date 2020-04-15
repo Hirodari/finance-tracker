@@ -23,3 +23,10 @@
 </div>
 <div id="results">
 </div>
+<div class="row table-format">
+  <div class="col-7">
+    <% if !@tracked_stocks.empty? %>
+      <%= render 'stocks/list'%>
+    <% end %>
+  </div>
+</div>

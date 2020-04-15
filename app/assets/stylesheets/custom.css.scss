@@ -41,7 +41,23 @@ body {
   width: 562px;
 }
 
+#card-color {
+  background-color: #CACBCD;
+}
+
+#content-color {
+  color: white !important;
+}
+
+#user-icon {
+  padding-bottom: 15px;
+}
+
 .alert-format {
   padding-top: 10px;
   width: 330px;
+}
+
+.table-format {
+  padding-top: 10px !important;
 }
