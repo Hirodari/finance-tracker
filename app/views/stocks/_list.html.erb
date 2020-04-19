@@ -5,6 +5,7 @@
       <th scope="col">Name</th>
       <th scope="col">Last Price</th>
       <th scope="col">Action</th>
+
     </tr>
   </thead>
   <tbody>
@@ -13,9 +14,26 @@
         <th scope="row"><%= stock.ticker%></th>
         <td><%= stock.name%></td>
         <td><%= stock.last_price%></td>
-        <td><%= link_to "Remove", user_stock_path(stock),
-        class:" negative ui button", method: :delete, data: {confirm: "are you sure?"} %>
-      </td>
+        <% if current_user.id == @user.id %>
+          <td><%= link_to "Remove", user_stock_path(stock),
+          class:" negative ui button", method: :delete, data: {confirm: "are you sure?"} %>
+          </td>
+        <% else %>
+          <td>
+            <% if @user.can_track_stock?(stock.ticker) %>
+              <%= link_to "Add Portfolio", user_stocks_path(user:
+                @user, ticker: stock.ticker),
+              class:"ui teal button", method: :post %>
+            <% else %>
+              <div class="ui green labels">
+                <a class="ui label">
+                  Already tracking
+                  <% if !current_user.under_stock_limit?%>
+                    10 stocks
+                  <% end %>
+            <% end %>
+          </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

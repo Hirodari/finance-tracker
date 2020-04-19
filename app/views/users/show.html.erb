@@ -1,0 +1,41 @@
+<h1 class="header" align="center"><%= "Profile for #{@user.first_name.capitalize}"%></h1>
+<div id="profile">
+  <div class="ui card">
+    <div class="content">
+      <div class="header">
+        <i class="green address book icon"></i>
+        <strong class="header"><%= "#{@user.full_name}"%></strong>
+      </div>
+    </div>
+    <div class="extra content">
+      <h3 class="header">
+        <i class="envelope green icon"></i>
+        <%= "#{@user.email}"%>
+      </h3>
+    </div>
+    <div class="extra content">
+      <h3 class="header">
+        <i class="green blind icon"></i>
+        <% if current_user.not_friend_with?(@user) && current_user != current_user %>
+          <%= link_to 'Follow friend?', friendships_path(user: @user),
+          class: "ui tiny compact green button", method: :post %>
+        <% elsif current_user == current_user %>
+          <span class=" badge badge-pink"> <%= "#{@user.full_name}"%> </span>
+        <% else%>
+          <span class=" badge badge-pink"> already friend </span>
+        <% end %>
+      </h3>
+    </div>
+  </div>
+
+
+  <div class="row table-format">
+    <div class="col-fluid">
+      <% if !@tracked_stocks.empty? %>
+        <%= render 'stocks/list'%>
+      <% else %>
+        <h2> This user is not tracking any stocks </h2>s
+      <% end %>
+    </div>
+  </div>
+</div>

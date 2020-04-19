@@ -1,12 +1,12 @@
-<h1>My Portfolio</h1>
-
+<h1> <%="No" if @friends.empty? %> Friends</h1>
+<br>
 <div class="ui form">
   <div class="inline field">
-    <h3 id="label-id">Search Stocks</h3>
-      <%= form_tag search_stock_path, remote: true, method: :get do%>
+    <h3 id="label-id">Search Friends</h3>
+      <%= form_tag search_friends_path, remote: true, method: :get do%>
         <div class="ui equal width grid">
           <div class="column">
-              <%= text_field_tag :stock, params[:stock], placeholder:"Stock sticker name",
+              <%= text_field_tag :friend, params[:friend], placeholder:"Email or Name",
                   autofocus: true, class:" two wide column", id:"bar" %>
           </div>
         <div class="column">
@@ -16,14 +16,15 @@
         </div>
         </div>
       <% end %>
+    </div>
   </div>
 </div>
-<div id="results">
-</div>
-<div class="row table-format">
-  <div class="col-fluid">
-    <% if !@tracked_stocks.empty? %>
-      <%= render 'stocks/list'%>
-    <% end %>
+<div class="container-fluid friend-panel">
+  <div id="search_results">
+
   </div>
+
+  <% if !@friends.empty? %>
+    <%= render 'friends/lists'%>
+  <% end %>
 </div>

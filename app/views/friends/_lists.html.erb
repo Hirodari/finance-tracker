@@ -1,0 +1,27 @@
+<div class="row table-friend">
+  <div class="col-md-fluid">
+    <table class="table table-dark table-hover ">
+      <thead>
+        <tr>
+          <th scope="col">First Name</th>
+          <th scope="col">Last Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @friends.each do |friend|%>
+          <tr>
+            <th scope="row"><%= friend.first_name%></th>
+            <td><%= friend.last_name.capitalize%></td>
+            <td><%= friend.email.capitalize%></td>
+            <td><%= link_to "Stop following", friendship_path(friend.id),
+            class:" orange ui button", method: :delete, data: {confirm: "are you sure?"} %>
+            <%= link_to "View Profile", user_path(friend),class:" orange ui button" %>
+          </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

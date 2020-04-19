@@ -1,0 +1,30 @@
+<div class="alert-format">
+  <%= render 'layouts/alert' %>
+</div>
+
+<% if @friends.present? %>
+    <div class="row">
+      <div class="col-md-fluid">
+        <table class="ui inverted selectable table">
+          <tbody>
+            <% @friends.each do |friend|%>
+              <tr>
+                <td>Names: <%= friend.full_name %></td>
+                <td>Email: <%= friend.email%></td>
+                <td>Action: <%= link_to 'view Profile', user_path(friend), class: "ui tiny compact green button" %>
+                            <% if current_user.not_friend_with?(friend.id)%>
+                              <%= link_to 'Follow friend?', friendships_path(user: friend),
+                              class: "ui tiny compact green button", method: :post %>
+                            <% else %>
+                              <span class=" badge badge-dark"> already friend </span>
+                            <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+<% else %>
+  <strong> No record </strong>
+<% end %>
